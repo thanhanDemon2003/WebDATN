@@ -16,10 +16,10 @@ window.fbAsyncInit = function () {
     xfbml: true,
     version: "v18.0",
   });
-  const facebookLogin = document.getElementById("loginfbne");
-  facebookLogin.addEventListener('click', function () {
-    console.log('click');
-  FB.login(function (response) {
+  // const facebookLogin = document.getElementById("loginfbne");
+  // facebookLogin.addEventListener('click', function () {
+  //   console.log('click');
+  FB.login(function (response) { 
     if (response.authResponse) {
       console.log("Chào Mừng Bạn! Đã Đăng Nhập. ");
       FB.api("/me", { fields: "name, email, id" }, function (response) {
@@ -36,7 +36,7 @@ window.fbAsyncInit = function () {
       console.log("Người dùng đã hủy đăng nhập.");
     }
   });
-})
+// })
 }
 
 async function loginApi(id) {
