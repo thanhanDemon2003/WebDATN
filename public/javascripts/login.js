@@ -1,12 +1,4 @@
-window.fbAsyncInit = function () {
-  FB.init({
-    appId: "317289147672827",
-    xfbml: true,
-    version: "v18.0",
-  });
- FB.AppEvents.logPageView();
-}
- const facebookLogin = document.getElementById("loginfbne");
+const facebookLogin = document.getElementById("loginfbne");
   facebookLogin.addEventListener('click', function () {
     console.log('click');
   FB.login(function (response) { 
