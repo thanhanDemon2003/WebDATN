@@ -18,6 +18,7 @@ window.fbAsyncInit = function () {
   });
   const facebookLogin = $('a.fb-login-button');
   facebookLogin.on('click', function () {
+    console.log('click');
   FB.login(function (response) {
     if (response.authResponse) {
       console.log("Chào Mừng Bạn! Đã Đăng Nhập. ");
