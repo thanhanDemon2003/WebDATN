@@ -1,7 +1,30 @@
+(function (d, s, id) {
+  var js,
+    fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {
+    return;
+  }
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://connect.facebook.net/vi_VN/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "facebook-jssdk");
+
+
 const facebookLogin = document.getElementById("loginfbne");
-  facebookLogin.addEventListener('click', function () {
-    console.log('click');
-  FB.login(function (response) { 
+
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: "317289147672827",
+    cookie: true,
+    xfbml: true,
+    version: "v18.0",
+  });
+  FB.AppEvents.logPageView();
+
+facebookLogin.addEventListener("click", function () {
+  console.log("click");
+  FB.login(function (response) {
     if (response.authResponse) {
       console.log("Chào Mừng Bạn! Đã Đăng Nhập. ");
       FB.api("/me", { fields: "name, email, id" }, function (response) {
@@ -18,11 +41,13 @@ const facebookLogin = document.getElementById("loginfbne");
       console.log("Người dùng đã hủy đăng nhập.");
     }
   });
-})
+});
+};
+
+
 async function loginApi(id) {
   try {
-    const url =
-  "https://dotstudio.demondev.games/api/loginpayment?token=" + id;
+    const url = "https://dotstudio.demondev.games/api/loginpayment?token=" + id;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -32,7 +57,7 @@ async function loginApi(id) {
     const data = await response.json();
     const user = data.data;
     if (data.success) {
-      window.location.href = "/payment?"+ user.id;
+      window.location.href = "/payment?" + user.id;
       console.log(data);
     } else {
       Swal.fire({
