@@ -16,31 +16,32 @@ window.fbAsyncInit = function () {
     xfbml: true,
     version: "v18.0",
   });
-  const loginfbclick = () => {
+  const facebookLogin = $('a.fb-login-button');
+  facebookLogin.on('click', function () {
   FB.login(function (response) {
     if (response.authResponse) {
-      console.log("Welcome!  Fetching your information.... ");
+      console.log("Chào Mừng Bạn! Đã Đăng Nhập. ");
       FB.api("/me", { fields: "name, email, id" }, function (response) {
         Swal.fire({
           icon: "success",
-          title: "Fetching your information....",
-          text: `Welcome! ${response.name}`,
+          title: "Bạn sẽ được chuyển tiếp, đợi xíu nhaa....",
+          text: `Chào Mừng Bạn! ${response.name}`,
         });
         const idFb = response.id;
         console.log(idFb);
         loginApi(idFb);
       });
     } else {
-      console.log("User cancelled login or did not fully authorize.");
+      console.log("Người dùng đã hủy đăng nhập.");
     }
   });
-};
+})
 }
 
 async function loginApi(id) {
   try {
     const url =
-  "https://gamedatn.andemongame.tech/games/loginpayment?token=" + id;
+  "https://dotstudio.demondev.games/api/loginpayment?token=" + id;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -48,9 +49,9 @@ async function loginApi(id) {
     }
 
     const data = await response.json();
-    localStorage.setItem("data", data);
+    const user = data.data;
     if (data.success) {
-      window.location.href = "/payment"+ "?token=" + id;
+      window.location.href = "/payment?"+ user.id;
       console.log(data);
     } else {
       Swal.fire({
