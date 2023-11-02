@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Login Payment</title>
@@ -40,15 +39,15 @@
               <form action="#" class="login-form">
                 <div class="form-group">
                   <div
-                  id="loginfbne"
-                  class="fb-login-button"
-                  data-width="350"         
-                  data-size="large"      
-                  data-button-type="login_with" 
-                  data-layout="rounded"    
-                  data-auto-logout-link="false"
-                  data-use-continue-as="false"
-                ></div>
+                    id="loginfbne"
+                    class="fb-login-button"
+                    data-width="350"
+                    data-size="large"
+                    data-button-type="login_with"
+                    data-layout="rounded"
+                    data-auto-logout-link="false"
+                    data-use-continue-as="false"
+                  ></div>
                 </div>
               </form>
             </div>
@@ -56,23 +55,12 @@
         </div>
       </div>
     </section>
-    <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
-  const firebaseConfig = {
-    apiKey: "AIzaSyAxRiY-ZyqV_pXgGD-kt-MG4K0SKsEPCI4",
-    authDomain: "datn-demon.firebaseapp.com",
-    projectId: "datn-demon",
-    storageBucket: "datn-demon.appspot.com",
-    messagingSenderId: "515613105980",
-    appId: "1:515613105980:web:e3184dfa3bf8b80ed94839",
-    measurementId: "G-RBGCF8TT8X"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/vi_VN/sdk.js"
+    ></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/javascripts/login.js"></script>
