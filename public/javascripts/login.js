@@ -16,8 +16,7 @@ window.fbAsyncInit = function () {
     xfbml: true,
     version: "v18.0",
   });
-const btnLoginFB = document.querySelector("#fb-login-button");
-btnLoginFB.addEventListener("click", function (e) {
+  const loginfbclick = () => {
   FB.login(function (response) {
     if (response.authResponse) {
       console.log("Welcome!  Fetching your information.... ");
@@ -35,7 +34,7 @@ btnLoginFB.addEventListener("click", function (e) {
       console.log("User cancelled login or did not fully authorize.");
     }
   });
-})
+};
 }
 
 async function loginApi(id) {
@@ -51,7 +50,7 @@ async function loginApi(id) {
     const data = await response.json();
     localStorage.setItem("data", data);
     if (data.success) {
-      window.location.href = "https://thanhan.andemongame.tech/tes/PayWeb/index.html";
+      window.location.href = "/payment"+ "?token=" + id;
       console.log(data);
     } else {
       Swal.fire({
