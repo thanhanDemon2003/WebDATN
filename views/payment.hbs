@@ -1,0 +1,103 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/styles.css" />
+    <link rel="stylesheet" href="/stylesheets/framework.css" />
+    <link rel="stylesheet" href="/stylesheets/button.css" />
+    <title>Giao Diện Thành Toán</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <img src="/images/dot.png" width="100" height="100" alt="Logo" />
+        </div>
+        <div class="user-icon"><span id="user"></span><span>Đăng Xuất</span></div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="container-box">
+        <div class="textContainer">
+          <h1>Cổng Thanh Toán</h1>
+          <p>Chọn phương thức thanh toán</p>
+        </div>
+        <div class="napthe-box">
+          <span class="napthe-title">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
+              alt=""
+            />
+          </span>
+          <span class="napthe-title">
+            <img src="/images/vnPay.png" alt="" />
+          </span>
+          <span class="napthe-title">
+            <img src="/images/vsmat.png" alt="" />
+          </span>
+        </div>
+        <p class="w-full ml-50">Số tiền nạp</p>
+        <div class="dulieunap">
+          <p>
+            DotCoin tăng theo số tiền bạn nạp, nạp càng nhiều sẽ càng thưởng
+            nhiều!
+          </p>
+          <div class="form-group">
+            <input
+              id="ipVnd"
+              class="form-field"
+              type="text"
+              placeholder="Số Tiền Nạp"
+            />
+            <span>VNĐ</span>
+          </div>
+          <span id="errIp" class="err"></span>
+          <div class="nap">
+            <img src="/images/dotcoinplus.png" alt="" />
+            <span>+</span>
+            <span id="dotcoin">0</span>
+          </div>
+          <button type="submit">Thanh Toán</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <p>Hỗ trợ độc quyền và đồng phát hành</p>
+          <img
+            src="https://cdn.haitrieu.com/wp-content/uploads/2023/05/Logo-Truong-Cao-dang-FPT-Polytechnic.png"
+            alt=""
+          />
+        </div>
+        <div class="footer-info">
+          <p>DotCoin là đơn vị tiền ảo được sử dụng trong game Dark Disquite</p>
+          <p>Được phát hành bởi Dot Studio</p>
+          <p>Địa chỉ: Tòa nhà QTSC9 (toà T), đường Tô Ký, phường Tân Chánh Hiệp,
+            quận 12, TP HCM</p>
+
+          Điện thoại: +84 961261003 || Email: iamdemon.dev@gmail.com
+        </div>
+
+        <div class="social-icons">
+          <a href=""><img src="/images/icons8-facebook-48.png" alt="" /></a>
+          <img src="/images/ins.png" alt="" />
+          <img src="/images/icons8-website-48.png" alt="" />
+        </div>
+      </div>
+
+    </footer>
+    <!-- 
+ ================================================= javascripts 
+-->
+    <script src="/javascripts/javascripts.js"></script>
+    <script>
+      let data = sessionStorage.getItem('data');
+        data = JSON.parse(data);
+      document.getElementById("user"); 
+      console.log(data); 
+      user.innerHTML = data.name;
+    </script>
+  </body>
+</html>

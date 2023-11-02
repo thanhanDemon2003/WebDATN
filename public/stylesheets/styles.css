@@ -1,0 +1,355 @@
+@font-face {
+  font-family: "Agbalumo";
+  src: url("Agbalumo-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.container-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10%;
+  width: 600px;
+  height: 700px;
+  background-color: #ffffff;
+  padding: auto;
+  margin-bottom: 10%;
+}
+.textContainer {
+  width: 80%;
+  font-family: "Agbalumo";
+}
+.textContainer h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  text-align: center;
+  font-family: "Agbalumo";
+}
+.napthe-box {
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+  margin-bottom: 10%;
+}
+
+.napthe-title {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Agbalumo";
+  font-size: 1.5pc;
+}
+
+.napthe-title img {
+  max-width: 50px;
+  height: 50px;
+}
+.napthe-title {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.napthe-title:hover {
+  cursor: pointer;
+}
+.napthe-title:active {
+  background-color: #e2e2e2;
+}
+
+.napthe-title.selected {
+  border-color: #ffe6ff;
+}
+.selected {
+  background: #eeffe6;
+  color: #fff;
+}
+:root {
+  --input-color: #99a3ba;
+  --input-border: #cdd9ed;
+  --input-background: #fff;
+  --input-placeholder: #cbd1dc;
+
+  --input-border-focus: #275efe;
+
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #eef4ff;
+
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #aa8e56;
+}
+
+.form-field {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  color: var(--input-color);
+  border: 1px solid var(--input-border);
+  background: var(--input-background);
+  transition: border 0.3s ease;
+  &::placeholder {
+    color: var(--input-placeholder);
+  }
+  &:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+  }
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+  & > span,
+  .form-field {
+    white-space: nowrap;
+    display: block;
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+    &:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+    &:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+  }
+  .form-field {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  & > span {
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 25px;
+    color: var(--group-color);
+    background: var(--group-background);
+    border: 1px solid var(--group-border);
+    transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+  }
+  &:focus-within {
+    & > span {
+      color: var(--group-color-focus);
+      background: var(--group-background-focus);
+      border-color: var(--group-border-focus);
+    }
+  }
+}
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+body {
+  min-height: 100vh;
+  font-family: "Agbalumo";
+  display: flex;
+  flex-direction: column;
+  background: #f0f0f0;
+  align-items: center;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  .form-group {
+    max-width: 360px;
+    &:not(:last-child) {
+      margin-bottom: 0px;
+    }
+  }
+}
+.dulieunap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.nap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.dulieunap p {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75pc;
+  font-weight: normal;
+  margin-bottom: 20px;
+  color: #616161;
+  font-size: small;
+}
+.err {
+  color: red;
+  font-size: 0.85pc;
+  font-weight: normal;
+  margin-top: 20px;
+  text-align: start;
+  width: 100%;
+  margin-left: 40px;
+}
+.nap img {
+  height: 100px;
+  width: 100px;
+}
+
+.nap span {
+  margin-left: 5px;
+  font-size: 1.5pc;
+  font-weight: bolder;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  height: 100px;
+}
+header {
+  background-color: #ffffff;
+  display: flex;
+  width: 100%;
+  margin-top: 0;
+  
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+.logo,
+.user-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.user-icon {
+  font-size: 16px;
+  font-weight: bold;
+  float: right;
+}
+
+.user-icon img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+footer {
+  background: gray;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 0;
+}
+.footer-logo,
+  .social-icons {
+   width: 25%;
+  }
+  .footer-info {
+    width: 50%;
+  }
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  text-align: center;
+}
+
+.footer-logo img {
+  width: 120px;
+  height: auto;
+  margin: 0 auto;
+}
+.footer-info{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.social-icons {
+  text-align: center;
+}
+
+.social-icons img {
+  width: 40px;
+  height: 0 auto;
+
+  margin: 0 5px;
+}
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+  
+  .footer-logo,
+  .footer-info, 
+  .social-icons {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .container-box {
+    width: 100%; 
+    margin: 50px 20px;
+  }
+  
+  .napthe-box {  
+    flex-wrap: wrap;
+  }
+  
+  .napthe-title {
+    flex: 0 0 50%;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    max-width: 100%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-logo, 
+  .footer-info,
+  .social-icons {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container-box {
+    width: 80%;
+  }
+}
