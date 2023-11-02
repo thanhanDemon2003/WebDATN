@@ -16,7 +16,7 @@ window.fbAsyncInit = function () {
     xfbml: true,
     version: "v18.0",
   });
-  const facebookLogin = $('a.fb-login-button');
+  const facebookLogin = $('div.fb-login-button');
   facebookLogin.on('click', function () {
     console.log('click');
   FB.login(function (response) {
