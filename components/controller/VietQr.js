@@ -45,6 +45,12 @@ const vietQrCreate = async (req, res) => {
         return;
         }
         const payment = paymentService.paymentCreate(dataApi, methodPayment);
+        const checkoutUrl = JSON.parse(body).data.checkoutUrl
+        if (!checkoutUrl){
+          return res.status(400).json({
+            body: body,
+          });
+        }
         return res.status(200).json({
           data: body,
           checkoutUrl: JSON.parse(body).data.checkoutUrl,

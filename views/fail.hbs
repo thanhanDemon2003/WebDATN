@@ -42,10 +42,10 @@ font-size: 2em;
   <body>
     <div class="form">
     <h1>Mã Đơn Hàng: {{orderCode}} </h1>
-    <button type="button">Trở về trang thanh toán</button>
+    <button type="button" id="btn-home">Trở về trang thanh toán</button>
     </div>
     <script>
-        const btn = document.querySelector("button");
+        const btn = document.getElementById("btn-home");
         btn.addEventListener("click", () => {
             window.location.href = "https://dotstudio.demondev.games/payment?id="+{{id}};
         });

@@ -97,7 +97,8 @@ const btn = document.getElementById("btn-Payment");
 
 btn.addEventListener("click", async () => {
     checkValueInputAmount();
-    const amount = await input.value;
+    const value = input.value;
+    amount = value.replace(/\./g, "");
     const id = btn.getAttribute("data-id");
   Swal.fire({
     icon: "warning",
@@ -110,8 +111,8 @@ btn.addEventListener("click", async () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      amount: 1000,
-      id_Player: "654154c02ce6be3e6b068595"
+      amount: Number(amount),
+      id_Player: id
     }),
   })
   .then(res => res.json())

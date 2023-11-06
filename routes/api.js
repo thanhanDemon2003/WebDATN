@@ -10,6 +10,6 @@ router.get('/loginpayment', PlayerController.LoginPayToFacebook)
 // router.post('/paymentmomo', PlayerController.PaymentMOMOController)
 router.post('/paymentvietqr', VietQR.vietQrCreate)
 
-router.post('/respayment', paymentController.resPaymentController)
+router.get('/respayment', paymentController.resPaymentController)
 
 module.exports = router;
