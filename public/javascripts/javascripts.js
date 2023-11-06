@@ -112,7 +112,7 @@ btn.addEventListener("click", async () => {
     },
     body: JSON.stringify({
       amount: Number(amount),
-      id_Player: id
+      id_Player: "654154c02ce6be3e6b068595"
     }),
   })
   .then(res => res.json())
