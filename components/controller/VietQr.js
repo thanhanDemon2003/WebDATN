@@ -12,8 +12,8 @@ const vietQrCreate = async (req, res) => {
   const now = Math.floor(Date.now()/1000);
   const expiredAt = now + 15*60; 
   const description = "Nạp Tiền";
-  const returnUrl = "https://dotstudio.demondev.games/api/respayment";
-  const cancelUrl = "https://dotstudio.demondev.games/api/respayment";
+  const returnUrl = "https://dotstudio.demondev.games/payment/success";
+  const cancelUrl = "https://dotstudio.demondev.games/payment/fail";
   const methodPayment = "vietqr";
   const secretKey = process.env.CHECKSUM_KEY;
   const data = `amount=${amount}&cancelUrl=${cancelUrl}&description=${description}&orderCode=${orderCode}&returnUrl=${returnUrl}`;

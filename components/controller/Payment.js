@@ -8,10 +8,10 @@ const resPaymentController = async (req, res) => {
     const balance = resPayment.dotCoint;
     const idPlayer = resPayment.idPlayer;
     if (status !== "PAID") {
-      return res.redirect('/payment/fail',{orderCode:orderCode, idPlayer:id}); 
+      return res.status(200).json({ success: true, data: user }); 
     }
     const user = await PlayerService.updateDotCoin(idPlayer, balance);
-    return res.redirect('/payment/success',{orderCode:orderCode, idPlayer:id}); 
+    return res.status(200).json({ success: true, data: user }); 
   } catch (error) {
     console.error(error);
     return res.status(500).json({ success: false, error: error });

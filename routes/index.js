@@ -23,5 +23,6 @@ router.get("/payment/fail", function(req, res, next) {
   const orderCode = req.query.orderCode;
   const id = req.query.id;
   res.render('fail', { orderCode: orderCode, id: id });
+
 })
 module.exports = router;
