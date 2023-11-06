@@ -13,7 +13,7 @@
         <div class="logo">
           <img src="/images/dot.png" width="100" height="100" alt="Logo" />
         </div>
-        <div class="user-icon"><span id="user"></span><span>Đăng Xuất</span></div>
+        <div class="user-icon"><span id="user">{{name}}</span><span>Đăng Xuất</span></div>
       </div>
     </header>
     <div class="container">
@@ -25,7 +25,7 @@
         <div class="napthe-box">
           <span class="napthe-title">
             <img
-              src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png"
+              src="/images/payos-logo.svg"
               alt=""
             />
           </span>
@@ -57,11 +57,10 @@
             <span>+</span>
             <span id="dotcoin">0</span>
           </div>
-          <button type="submit">Thanh Toán</button>
+          <button type="submit" data-user="{{id}}" id="btn-Payment">Thanh Toán</button>
         </div>
       </div>
     </div>
-
     <footer>
       <div class="footer-content">
         <div class="footer-logo">
@@ -91,13 +90,9 @@
     <!-- 
  ================================================= javascripts 
 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/javascripts/payment.js"></script>
     <script src="/javascripts/javascripts.js"></script>
-    <script>
-      let data = sessionStorage.getItem('data');
-        data = JSON.parse(data);
-      document.getElementById("user"); 
-      console.log(data); 
-      user.innerHTML = data.name;
-    </script>
   </body>
 </html>

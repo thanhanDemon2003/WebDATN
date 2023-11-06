@@ -45,7 +45,7 @@ console.log(response, "đang gọi login nè");
 
 window.fbAsyncInit = function () {
   FB.init({
-    appId: "317289147672827",
+    appId: "1996036064104031",
     cookie: true,
     xfbml: true,
     status: true,
@@ -123,9 +123,7 @@ async function loginApi(id) {
     }
 
     const data = await response.json();
-    const user = data.data;
     if (data.success) {
-      window.location.href = "/payment?" + user.id;
       console.log(data);
     } else {
       Swal.fire({

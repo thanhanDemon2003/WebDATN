@@ -17,20 +17,26 @@ spans.forEach((span) => {
 
 const input = document.getElementById("ipVnd");
 const error = document.getElementById("errIp");
-
-input.addEventListener("focusout", () => {
+function checkValueInputAmount (){
   let valuecheck = input.value;
   valuecheck = valuecheck.replace(/\./g, "");
   if (parseInt(valuecheck) < 20000) {
     error.innerText = "Số tiền phải lớn hơn 20,000";
+    return;
   } else if (parseInt(valuecheck) > 50000000) {
     error.innerText = "Số tiền phải nhỏ hơn 50,000,000";
-  } else if (/[a-zA-Z]/.test(valuecheck)) {
+    return;
+  } else if (/[a-zA-Z]/.test(valuecheck)) { 
     input.value = "";
     error.innerText = "Số tiền không được chứa chữ cái";
+    return;
   } else {
     error.innerText = "";
+    return;
   }
+}
+input.addEventListener("focusout", () => {
+  checkValueInputAmount()
 });
 let amount
 
@@ -87,4 +93,37 @@ if (isNaN(amount)) {
   dotcoin.innerText = Math.round(xu);
 
 }
+const btn = document.getElementById("btn-Payment");
 
+btn.addEventListener("click", async () => {
+    checkValueInputAmount();
+    const amount = await input.value;
+    const id = btn.getAttribute("data-id");
+  Swal.fire({
+    icon: "warning",
+    title: "Bạn sẽ được chuyển tiếp, đợi xíu nhaa....",
+    text: `Chào Mừng Bạn!`,
+  });
+  fetch("/api/paymentvietqr", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      amount: 1000,
+      id_Player: "654154c02ce6be3e6b068595"
+    }),
+  })
+  .then(res => res.json())
+  .then(data => {
+      console.log("api đã về");
+      window.location.href = data.checkoutUrl;
+    }).catch((err) => {
+      console.log(err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Lỗi kết nối API",
+      });
+    })
+})
