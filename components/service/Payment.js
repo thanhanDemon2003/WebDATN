@@ -1,7 +1,7 @@
 const { json } = require("express");
 const PaymentModel = require("../model/Payment.js");
 const fs = require("fs");
-
+const userSerivce = require("./Player.js");
 const oderCode = "resources/orderCode.txt";
 
 const orderCode = () => {
@@ -73,4 +73,33 @@ const resPayment = async(orderCode,id, status)=>{
   await res.save();
   return res;
 }
-module.exports = { paymentCreate, orderCode, countDotCoin, resPayment };
+const paymentZaloPayCreate = async (order, id) => {
+  const oderCode = await orderCode();
+  const dotCoint = await countDotCoin(order.amount);
+  const name = await userSerivce.getUser(id);
+  const payment = await PaymentModel.create({
+    buyerName: name.name,
+    amountPayment: order.amount,
+    orderCodePayment: oderCode,
+    methodPayment: "ZaloPay",
+    statusPayment: "PENDING",
+    idPlayer: id,
+    description: order.description,
+    transitionID: order.app_trans_id,
+    dotCoint: dotCoint,
+  });
+  await payment.save();
+  return payment;
+};
+const paymentZaloPayRes = async (transitionID, status) => {
+  const res = await PaymentModel.findOne({transitionID: transitionID});
+  res.statusPayment = status;
+  await res.save();
+  return res;
+}
+const testPayement = async (transitionID) => {
+  const res = await PaymentModel.findOne({transitionID: transitionID});
+  return res;
+}
+module.exports = { paymentCreate, orderCode, countDotCoin, resPayment, paymentZaloPayCreate, paymentZaloPayRes,
+  testPayement };

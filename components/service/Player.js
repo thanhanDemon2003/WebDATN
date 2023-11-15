@@ -13,6 +13,15 @@ const updateDotCoin = async (id, dotCoint) => {
   await user.save();
   return user;
 };
+const LoginPayToDiscord = async (id_discord) => {
+  const discord = await PlayerModel.findOne({ id_discord: id_discord });
+  return discord;
+}
+const getUser = async (id) => {
+  const user = await PlayerModel.findById(id);
+  return user;
+}
+
 
 const PaymentMOMO = (orderID, amount, orderInfo) => {
   const partnerCode = "MOMOOJOI20210710";
@@ -62,4 +71,4 @@ const PaymentMOMO = (orderID, amount, orderInfo) => {
   return requestBody;
 };
 
-module.exports = { LoginFacebookPayment, PaymentMOMO, updateDotCoin };
+module.exports = { LoginFacebookPayment, PaymentMOMO, updateDotCoin, LoginPayToDiscord, getUser };

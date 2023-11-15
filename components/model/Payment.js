@@ -14,4 +14,15 @@ const schema = new Schema({
     description: { type: String },
     Date: { type: Date, default: Date.now() },
 });
+schema.pre('save', function(next) {
+  if (this.statusPayment === 'PENDING') {
+
+    const now = Date.now();
+    if (now - this.Date > 15*60*1000) {  
+      this.statusPayment = 'CANCELLED';
+    }
+  }
+
+  next();
+});
 module.exports = mongoose.models.payments || mongoose.model("payments", schema);

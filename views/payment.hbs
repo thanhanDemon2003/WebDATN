@@ -13,7 +13,7 @@
         <div class="logo">
           <img src="/images/dot.png" width="100" height="100" alt="Logo" />
         </div>
-        <div class="user-icon"><span id="user">{{name}}</span><span>Đăng Xuất</span></div>
+        <div class="user-icon"><span class="c-blue" id="user"></span><span onclick="LogOut()"> - Đăng Xuất</span></div>
       </div>
     </header>
     <div class="container">
@@ -23,16 +23,16 @@
           <p>Chọn phương thức thanh toán</p>
         </div>
         <div class="napthe-box">
-          <span class="napthe-title">
+          <span data-method="payWithPayOS" class="napthe-title">
             <img
               src="/images/payos-logo.svg"
               alt=""
             />
           </span>
-          <span class="napthe-title">
-            <img src="/images/vnPay.png" alt="" />
+          <span data-method="payWithZaloPay" class="napthe-title">
+            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay.png" alt="" />
           </span>
-          <span class="napthe-title">
+          <span data-method="payWithVisaCard" class="napthe-title">
             <img src="/images/vsmat.png" alt="" />
           </span>
         </div>
@@ -57,7 +57,7 @@
             <span>+</span>
             <span id="dotcoin">0</span>
           </div>
-          <button type="submit" data-user="{{id}}" id="btn-Payment">Thanh Toán</button>
+          <button type="button" id="btn-Payment">Thanh Toán</button>
         </div>
       </div>
     </div>

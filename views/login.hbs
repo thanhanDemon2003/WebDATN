@@ -18,6 +18,7 @@
     />
 
     <link rel="stylesheet" href="/stylesheets/style.css" />
+
   </head>
   <body>
     <section class="ftco-section">
@@ -37,17 +38,22 @@
               </div>
               <h3 class="text-center mb-4">Đăng Nhập Game Dark Disquite</h3>
               <form action="#" class="login-form">
-                <div class="form-group">
+                <div class="form-group text-center">
+                  <div class="btn-google" id="btnGoogle" type="button">
+                    <span class="fa fa-google"></span>Đăng Nhập Bằng Google
+                    </div>
+                </div>
+                <div class="form-group text-center">
                   <div
-                    id="loginfbne"
-                    class="fb-login-button"
-                    data-width="350"
-                    data-size="large"
-                    data-button-type="login_with"
-                    data-layout="rounded"
-                    data-auto-logout-link="false"
-                    data-use-continue-as="false"
-                  ></div>
+                    class="discord-login-btn"
+                  >
+                    <a
+                      id="logindiscord"
+                      href="https://discord.com/api/oauth2/authorize?client_id=1171682757185900625&redirect_uri=http%3A%2F%2Fpayment.dotstudio.demondev.games%2Fpayment&response_type=token&scope=identify"
+                    >
+                      <span>Đăng Nhập Bằng Discord</span>
+                    </a>
+                  </div>
                 </div>
               </form>
             </div>
@@ -56,11 +62,42 @@
       </div>
     </section>
 
-    <script>
-     
+    {{! <script type="module">
+      import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"; import {
+      getAnalytics } from
+      "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js"; const
+      firebaseConfig = { apiKey: "AIzaSyAxRiY-ZyqV_pXgGD-kt-MG4K0SKsEPCI4",
+      authDomain: "datn-demon.firebaseapp.com", projectId: "datn-demon",
+      storageBucket: "datn-demon.appspot.com", messagingSenderId:
+      "515613105980", appId: "1:515613105980:web:e3184dfa3bf8b80ed94839",
+      measurementId: "G-RBGCF8TT8X" }; const app =
+      initializeApp(firebaseConfig); const analytics = getAnalytics(app);
+    </script> }}
+    {{! <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+  import { getAuth} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyAxRiY-ZyqV_pXgGD-kt-MG4K0SKsEPCI4",
+    authDomain: "datn-demon.firebaseapp.com",
+    projectId: "datn-demon",
+    storageBucket: "datn-demon.appspot.com",
+    messagingSenderId: "515613105980",
+    appId: "1:515613105980:web:e3184dfa3bf8b80ed94839",
+    measurementId: "G-RBGCF8TT8X"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+</script> }}
+    <script type="module">
+
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/javascripts/login.js"></script>
+    <script type="module" src="/javascripts/login.js"></script>
   </body>
 </html>

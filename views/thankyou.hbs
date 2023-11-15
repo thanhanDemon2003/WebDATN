@@ -1,0 +1,59 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success</title>
+    <style>
+      body { margin: 0; padding: 0; font-family: sans-serif; background:
+      #1c8adb; background: -webkit-linear-gradient(to right, #1c8adb, #39dc79);
+      background: linear-gradient(to right, #1c8adb, #39dc79); } .container{
+      width: 100%; display: flex; align-items: center; flex-direction: column;
+      margin-top: 10%; display: flex; justify-content: center; } .bodycontainer{
+      width: 100%; height: 100vh; display: flex; justify-content: center;
+      align-items: center; flex-direction: column; align-items: center; }
+      .container h1 { color: white; text-transform: uppercase; font-weight: 500;
+      text-align: center; } .container img { width: 100px; height: 100px;
+      margin: 10px; } .container h2 { color: white; text-transform: uppercase;
+      font-weight: 500; } .form { width: 100%; height: 100vh; display: flex;
+      align-items: center; flex-direction: column; align-items: center; } .form
+      h2 { color: white; text-transform: uppercase; font-weight: 500; } .form
+      button[type="button"] { width: 20%; padding: 10px; border: none;
+      background: #1c8adb; color: #fff; font-weight: 500; margin-top: 20px;
+      border-radius: 5px; width: 500px; height: 50px; font-size:large;
+      font-weight: 600; } .form button[type="button"]:hover { cursor: pointer;
+      background: #39dc79; color: #000; } @media (min-width: 300px) and
+      (max-width: 992px) { .container { padding: 40px; margin-top: 15%; } .form
+      { width: 70%; } .form button { width: 60%; font-size: 1.25rem; } }
+    </style>
+  </head>
+  <body>
+    <div class="bodycontainer">
+      <div class="container">
+        <h1>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi</h1>
+        <img src="/images/dot.png" alt="" />
+      </div>
+      <div class="form">
+        <h2>Mã Đơn Hàng: {{apptransid}} - Trạng thái:<span id="tt"> </span></h2>
+        <button id="btn-local" type="button">Tiếp tục thanh toán</button>
+      </div>
+    </div>
+    <script>
+      window.onload = async function () { 
+        if({{status}} == 1)
+      { document.getElementById("tt").innerHTML = "Thành Công" }else{
+      document.getElementById("tt").innerHTML = "Thất Bại" } const url =
+      localStorage.getItem("currentPaymentUrl"); const btn =
+      document.getElementById("btn-local"); btn.addEventListener("click", () =>
+      { window.location.href = url; }); fetch( "/api/respaymentzalo?apptransid="
+      + "{{apptransid}}" + "&status=" + "{{status}}", { method: "POST", headers:
+      { "Content-Type": "application/json" } } ) .then((res) => { if (res.status
+      === 200) { Swal.fire({ icon: "success", title: "Thành Công", text:
+      "Dữ liệu đang được chuyển về bạn hãy đợi một chút", }); } else {
+      console.log("fail"); } }) .then((data) => { console.log(data); })
+      .catch((err) => { console.log(err); }); }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </body>
+</html>

@@ -12,20 +12,46 @@ const LoginPayToFacebook = async (req, res, next) => {
       const login = await PlayerService.LoginFacebookPayment(tokenFB);
       if (!login) {
         return res
-          .status(400)
-          .json({ success: false, notification: "Bạn không có tài khoản, vui lòng tạo tài khoản trong game" });
+          .status(200)
+          .json({ error: true, notification: "Bạn không có tài khoản, vui lòng tạo tài khoản trong game" });
+      }
+      if (login.status == 1) {
+        return res
+          .status(200)
+          .json({ error: true, notification: "Tài khoản này đã bị khóa" });
+      }
+      return res.status(200).json({ success: true, notification: "Đăng nhập thành công", user: login._id, name: login.name });
+    } catch (error) {
+      res.status(500).json({ error: 2, notification: "Lỗi server" });
+    }
+  };
+  const LoginPayToDiscord = async (req, res, next) => {
+    try {
+      const id_discord = req.query.id;
+      if(!id_discord){
+        return res.status(400).json({ error: 1, notification: "ID discord trống" });
+      }
+      const login = await PlayerService.LoginPayToDiscord(id_discord);
+      if (!login) {
+        return res
+          .status(200)
+          .json({ error: true, notification: "Bạn không có tài khoản, vui lòng tạo tài khoản trong game" });
       }
       if (login.status == 1) {
         return res
           .status(400)
           .json({ success: false, notification: "Tài khoản này đã bị khóa" });
       }
-      return res.redirect('/payment', {id: login._id, name: login.name});
+      return res.status(200).json({ success: true, notification: "Đăng nhập thành công", user: login._id, name: login.name });
     } catch (error) {
       res.status(500).json({ error: 2, notification: "Lỗi server" });
     }
-  };
   
+  }
+
+
+
+
 // const PaymentMOMOController = (req, res) => {
 //       const {orderID, amount, orderInfo} = req.body;
 //       const body = PlayerService.PaymentMOMO(orderID, amount, orderInfo);
@@ -55,4 +81,4 @@ const LoginPayToFacebook = async (req, res, next) => {
 //       );
       
 //   }
-module.exports = {LoginPayToFacebook}
+module.exports = {LoginPayToFacebook, LoginPayToDiscord}

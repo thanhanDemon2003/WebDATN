@@ -1,34 +1,29 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
-  apptransid: { 
-    type: String,
-    required: true,
-    unique: true
-  },
-
-  zptransid: {
-    type: String
-  },
-
-  description: {
-    type: String
-  },
-
-  amount: {
-    type: Number
-  },
-
-  timestamp: {
-    type: Number
-  },
-
-  channel: {
-    type: Number
-  }
-
+const zaloPaySchema = new mongoose.Schema({
+  appid: Number,
+  apptransid: String,
+  apptime: Number,
+  appuser: String,
+  amount: Number,
+  embeddata: String,
+  item: [
+    {
+      itemid: String,
+      itename: String, 
+      itemprice: Number,
+      itemquantity: Number  
+    }
+  ],
+  zptransid: Number,
+  servertime: Number,
+  channel: Number,
+  merchantuserid: String,
+  userfeeamount: Number,
+  discountamount: Number,
+  mac: String
 });
 
-const Order = mongoose.model('Order', orderSchema);
+const ZaloPay = mongoose.model('ZaloPay', zaloPaySchema);
 
-module.exports = Order;
+module.exports = ZaloPay;

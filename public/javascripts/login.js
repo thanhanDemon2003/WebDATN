@@ -1,138 +1,72 @@
-
-
-const facebookLogin = document.getElementById("loginfbne");
-
-function statusChangeCallback(response) {
-console.log(response, "đang gọi login nè");
-
-  if (response.status === "connected") {
-    console.log("connected");
-    FB.api("/me", { fields: "name, email, id" }, function (response) {
-      Swal.fire({
-        icon: "success",
-        title: "Bạn sẽ được chuyển tiếp, đợi xíu nhaa....",
-        text: `Chào Mừng Bạn! ${response.name}`,
-      });
-      const idFb = response.id;
-      console.log(idFb);
-      loginApi(idFb);
-    });
-  }
-  else {
-    console.log("not connected");
-    FB.login(function (response) {
-      if (response.authResponse) {
-        console.log("Chào Mừng Bạn! Đã Đăng Nhập. ");
-        FB.api("/me", { fields: "name, email, id" }, function (response) {
-          Swal.fire({
-            icon: "success",
-            title: "Bạn sẽ được chuyển tiếp, đợi xíu nhaa....",
-            text: `Chào Mừng Bạn! ${response.name}`,
-          });
-          const idFb = response.id;
-          console.log(idFb);
-          loginApi(idFb);
-        });
-      } else {
-        console.log("Người dùng đã hủy đăng nhập.");
-      }
-    }, true);
-  }
-
-
-}
-
-
-window.fbAsyncInit = function () {
-  FB.init({
-    appId: "1996036064104031",
-    cookie: true,
-    xfbml: true,
-    status: true,
-    version: "v18.0",
-  });
-  FB.AppEvents.logPageView();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyAxRiY-ZyqV_pXgGD-kt-MG4K0SKsEPCI4",
+  authDomain: "datn-demon.firebaseapp.com",
+  projectId: "datn-demon",
+  storageBucket: "datn-demon.appspot.com",
+  messagingSenderId: "515613105980",
+  appId: "1:515613105980:web:e3184dfa3bf8b80ed94839",
+  measurementId: "G-RBGCF8TT8X",
 };
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
 
-document.getElementById("loginfbne").addEventListener("click", function () {
-       console.log("click event getLoginStatus");
-      FB.getLoginStatus(function (response){
-        statusChangeCallback(response);
+const ggProvider = new GoogleAuthProvider();
+// const fbProvider = new FacebookAuthProvider();
+(function () {
+  const btnGoogle = document.getElementById("btnGoogle");
+  // const btnFaceBook = document.getElementById('btnFacebook');
+
+  btnGoogle.addEventListener("click", (e) => {
+    signInWithPopup(auth, ggProvider)
+      .then((result) => {
+        const userGG = JSON.stringify(result);
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+          console.log('Google>', userGG);
+          console.log('User>>Google>', user); 
+          window.location.href = "/payment/#idgg=" + user.uid;
+
       })
-});
-
-
-
-//   facebookLogin.addEventListener("click", function () {
-//     console.log("click");
-//     FB.getLoginStatus(function (response) {
-//       if (response.status != "connected") {
-//         FB.login(function (response) {
-//           if (response.authResponse) {
-//             console.log("Chào Mừng Bạn! Đã Đăng Nhập. ");
-//             FB.api("/me", { fields: "name, email, id" }, function (response) {
-//               Swal.fire({
-//                 icon: "success",
-//                 title: "Bạn sẽ được chuyển tiếp, đợi xíu nhaa....",
-//                 text: `Chào Mừng Bạn! ${response.name}`,
-//               });
-//               const idFb = response.id;
-//               console.log(idFb);
-//               loginApi(idFb);
-//             });
-//           } else {
-//             console.log("Người dùng đã hủy đăng nhập.");
-//           }
-//         }, true);
-//       } else {
-//         console.log("Đã đăng nhập");
-//         FB.api("/me", { fields: "name, email, id" }, function (response) {
-//           Swal.fire({
-//             icon: "success",
-//             title: "Bạn sẽ được chuyển tiếp, đợi xíu nhaa....",
-//             text: `Chào Mừng Bạn! ${response.name}`,
-//           });
-//           const idFb = response.id;
-//           console.log(idFb);
-//           loginApi(idFb);
-//         });
-//       }
-//     });
-//   });
-// };
-
-(function (d, s, id) {
-  var js,
-    fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {
-    return;
-  }
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://connect.facebook.net/vi_VN/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, "script", "facebook-jssdk");
-
-async function loginApi(id) {
-  try {
-    const url = "https://dotstudio.demondev.games/api/loginpayment?token=" + id;
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error("Lỗi kết nối API");
-    }
-
-    const data = await response.json();
-    if (data.success) {
-      console.log(data);
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: data.notification,
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Error>", error);
+        console.log("Error code>", errorCode);
+        const credential = GoogleAuthProvider.credentialFromError(error);
       });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
+  });
+
+  //Sing in with Facebook
+  // btnFaceBook.addEventListener('click', e => {
+  //   signInWithPopup(auth, fbProvider).then(result => {
+  //         var token = result.credential.accessToken;
+  //         var user = result.user;
+  //         console.log('Facebook>', result);
+  //         console.log('User>>Facebook>', user);
+  //         // ...
+  //         userId = user.uid;
+
+  //     }).catch(function(error) {
+  //         // Handle Errors here.
+  //         var errorCode = error.code;
+  //         var errorMessage = error.message;
+  //         // The email of the user's account used.
+  //         var email = error.email;
+  //         // The firebase.auth.AuthCredential type that was used.
+  //         var credential = error.credential;
+  //         // ...
+  //         console.error('Error: hande error here>Facebook>>', error.code)
+  //     });
+  // }, false)
+})();

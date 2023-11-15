@@ -3,13 +3,25 @@ var router = express.Router();
 const PlayerController = require("../components/controller/Player.js");
 const VietQR = require("../components/controller/VietQr.js");
 const paymentController = require("../components/controller/Payment.js");
+const MoMo = require("../components/controller/Momo.js");
+const ZaloPay = require("../components/controller/ZaloPay.js");
 /* GET users listing. */
 
 
-router.get('/loginpayment', PlayerController.LoginPayToFacebook)
-// router.post('/paymentmomo', PlayerController.PaymentMOMOController)
-router.post('/paymentvietqr', VietQR.vietQrCreate)
+router.get('/loginpayment', PlayerController.LoginPayToFacebook);
+router.get('/loginpaymentdiscord', PlayerController.LoginPayToDiscord);
 
-router.get('/respayment', paymentController.resPaymentController)
+// router.post('/paymentmomo', PlayerController.PaymentMOMOController)
+router.post('/paymentvietqr', VietQR.vietQrCreate);
+router.post('/paymentmomo', MoMo.MomoCreate);
+router.post('/paymentzalopay', ZaloPay.ZaloPayCreate);
+// router.post('/paymentdatazalopay', ZaloPay.ZaloPayData);
+
+
+router.post('/respayment', paymentController.resPaymentController)
+router.post('/respaymentzalo', paymentController.resPaymentZaloPay)
+
+router.post('/naptienzalopay', ZaloPay.NapTienZaloPay);
+
 
 module.exports = router;
