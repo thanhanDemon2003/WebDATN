@@ -4,7 +4,6 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-  FacebookAuthProvider,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyAxRiY-ZyqV_pXgGD-kt-MG4K0SKsEPCI4",
@@ -16,14 +15,11 @@ const firebaseConfig = {
   measurementId: "G-RBGCF8TT8X",
 };
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 const ggProvider = new GoogleAuthProvider();
-// const fbProvider = new FacebookAuthProvider();
 (function () {
   const btnGoogle = document.getElementById("btnGoogle");
-  // const btnFaceBook = document.getElementById('btnFacebook');
 
   btnGoogle.addEventListener("click", (e) => {
     signInWithPopup(auth, ggProvider)
@@ -35,7 +31,13 @@ const ggProvider = new GoogleAuthProvider();
         const user = result.user;
           console.log('Google>', userGG);
           console.log('User>>Google>', user); 
-          window.location.href = "/payment/#idgg=" + user.uid;
+          window.location.href = "/logingamesuccess/#idgg=" + user.uid+"&name=" + user.displayName;
+          let data = {
+            user: user.uid,
+            name: user.displayName,
+            // email: user.email
+          };
+        
 
       })
       .catch((error) => {

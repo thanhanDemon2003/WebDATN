@@ -49,7 +49,7 @@
                   >
                     <a
                       id="logindiscord"
-                      href="https://discord.com/api/oauth2/authorize?client_id=1171682757185900625&redirect_uri=http%3A%2F%2Flocalhost%3A3001%2Fpayment&response_type=token&scope=identify"
+                      href="https://discord.com/api/oauth2/authorize?client_id=1171682757185900625&redirect_uri=https%3A%2F%2Fpayment.dotstudio.demondev.games%2Flogingamesuccess&response_type=token&scope=identify"
                     >
                       <span>Đăng Nhập Bằng Discord</span>
                     </a>
@@ -63,6 +63,22 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="/javascripts/login.js"></script>
+    <script>
+    </script>
+    <script src="/javascripts/UnityLoader.js"></script>
+    <script>
+    window.onload = function () {
+      const stt = {{stt}}
+      localStorage.setItem("stt", stt);
+      console.log(stt);
+    }
+
+      {{!-- window.gameInstance = UnityLoader.instantiate(
+        "gameContainer",
+        "/game/Build/DarkDisquite.json",
+        { onProgress: UnityProgress }
+      ); --}}
+    </script>
+    <script type="module" src="/javascripts/logingame.js"></script>
   </body>
 </html>

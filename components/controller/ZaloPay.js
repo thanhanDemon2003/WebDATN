@@ -20,7 +20,7 @@ const ZaloPayCreate = async (req, res) => {
     const embed_data = {
       promotioninfo: "id",
       merchantinfo: "123456",
-      redirecturl: "https://dotstudio.demondev.games/api/respaymentzalo",
+      redirecturl: "https://dotstudio.demondev.games/payment/thankyou",
     };
     const items = [{}];
     const transID = Math.floor(Math.random() * 1000000);
@@ -76,7 +76,76 @@ const ZaloPayCreate = async (req, res) => {
     );
   } catch (error) {}
 };
-
+const VisaCreate = async (req, res) => {
+  try {
+    const idPlayer = req.body.idPlayer;
+    const amount = req.body.amount;
+    console.log(idPlayer, amount);
+    const config = {
+      app_id: "2553",
+      key1: "PcY4iZIKFCIdgZvA6ueMcMHHUbRLYjPL",
+      key2: "kLtgPl8HHhfvMuDHPwKfgfsY4Ydm9eIz",
+      endpoint: "https://sb-openapi.zalopay.vn/v2/create",
+    };
+    const embed_data = {
+      promotioninfo: "id",
+      merchantinfo: "123456",
+      redirecturl: "https://dotstudio.demondev.games/payment/thankyou",
+    };
+    const items = [{}];
+    const transID = Math.floor(Math.random() * 1000000);
+    const order = {
+      app_id: config.app_id,
+      app_trans_id: `${moment().format("YYMMDD")}_${transID}`,
+      app_user: "Dot Studio",
+      app_time: Date.now(),
+      item: JSON.stringify(items),
+      embed_data: JSON.stringify(embed_data),
+      amount: amount,
+      callback_url: "https://dotstudio.demondev.games/api/respaymentzalo",
+      description: `DotStudio - Nạp tiền game Dark Disquite #${transID}`,
+      bank_code: "CC",
+    };
+    console.log(order);
+    const data =
+      config.app_id +
+      "|" +
+      order.app_trans_id +
+      "|" +
+      order.app_user +
+      "|" +
+      order.amount +
+      "|" +
+      order.app_time +
+      "|" +
+      order.embed_data +
+      "|" +
+      order.item;
+    order.mac = crypto
+      .createHmac("sha256", config.key1)
+      .update(data)
+      .digest("hex");
+    request.post(
+      config.endpoint,
+      { headers: { "Content-Type": "application/json" }, form: order },
+      async (err, response, body) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log(body);
+        const payment = await PaymentService.paymentVisaPayCreate(
+          order,
+          idPlayer
+        );
+        console.log(payment);
+        
+        serviceZaloPay.checkPaymentStatus(order.app_trans_id);
+        return res.status(200).json({ success: true, data: body });
+      }
+    );
+  } catch (error) {}
+};
 const NapTienZaloPay = async (req, res) => {
   try {
     const sdt = req.query.sdt;
@@ -111,4 +180,4 @@ const ZaloPayData = async (req, res) => {
   }
 };
 
-module.exports = { NapTienZaloPay, ZaloPayCreate, ZaloPayData };
+module.exports = { NapTienZaloPay, ZaloPayCreate, ZaloPayData, VisaCreate };

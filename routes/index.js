@@ -19,4 +19,15 @@ router.get("/payment/thankyou", function (req, res, next) {
   const { apptransid, status } = req.query;
   res.render("thankyou", { apptransid, status });
 });
+router.get("/logingame", function (req, res, next) {
+  const stt = req.query.stt;
+  if(!stt){
+  res.render("404");
+  }
+  res.render("logingame", {stt});
+
+});
+router.get("/logingamesuccess", function (req, res, next) {
+  res.render("logingamesuccess");
+})
 module.exports = router;

@@ -137,7 +137,7 @@ buttonPayment.addEventListener("click", async (e) => {
   }
   if (method === "payWithVisaCard") {
     console.log("Gọi Visa Nè", amount);
-    // payWithVisaCard(amount);
+    payWithVisaCard(amount);
   }
 });
 async function payWithPayOS(amount) {
@@ -170,6 +170,34 @@ async function payWithZaloPay(amount) {
   console.log(userId);
   console.log(amount);
   fetch("/api/paymentZaloPay", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      amount: Number(amount),
+      idPlayer: userId,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      par = JSON.parse(data.data);
+      console.log(par);
+      window.location.href = par.order_url;
+    })
+    .catch((err) => {
+      console.log(err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Lỗi kết nối API",
+      });
+    });
+}
+async function payWithVisaCard(amount) {
+  console.log(userId);
+  console.log(amount);
+  fetch("/api/paymentvisa", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -91,6 +91,24 @@ const paymentZaloPayCreate = async (order, id) => {
   await payment.save();
   return payment;
 };
+const paymentVisaPayCreate = async (order, id) => {
+  const oderCode = await orderCode();
+  const dotCoint = await countDotCoin(order.amount);
+  const name = await userSerivce.getUser(id);
+  const payment = await PaymentModel.create({
+    buyerName: name.name,
+    amountPayment: order.amount,
+    orderCodePayment: oderCode,
+    methodPayment: "Visa MaterCards",
+    statusPayment: "PENDING",
+    idPlayer: id,
+    description: order.description,
+    transitionID: order.app_trans_id,
+    dotCoint: dotCoint,
+  });
+  await payment.save();
+  return payment;
+};
 const paymentZaloPayRes = async (transitionID, status) => {
   const res = await PaymentModel.findOne({transitionID: transitionID});
   res.statusPayment = status;
@@ -102,4 +120,4 @@ const testPayement = async (transitionID) => {
   return res;
 }
 module.exports = { paymentCreate, orderCode, countDotCoin, resPayment, paymentZaloPayCreate, paymentZaloPayRes,
-  testPayement };
+  testPayement, paymentVisaPayCreate };
