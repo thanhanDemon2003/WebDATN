@@ -75,7 +75,7 @@ const LoginGameWeb = async (req, res, next) => {
     const random = Math.floor(Math.random() * 10000);
     const stt = `${moment().format("YYMMDD")}${random}`;
     console.log(stt);
-    const url = "http://localhost:3001/logingame?stt=" + stt;
+    const url = "http://dotstudio.andemongame.tech/logingame?stt=" + stt;
     return res.status(200).json({ success: true, url: url, stt: stt });
   } catch (error) {}
 };
