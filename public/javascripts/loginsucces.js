@@ -86,11 +86,7 @@ async function LoginwithGoogle(stt, gg, name) {
         window.location.href = "/logingame";
       }, 5000);
     } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Lỗi kết nối API",
-      });
+      console.log(data);
     }
   } catch (error) {
     console.log(error);
