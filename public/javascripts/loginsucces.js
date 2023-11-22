@@ -1,6 +1,20 @@
 window.onload = () => {
   const stt = localStorage.getItem("stt");
   console.log("stt", stt);
+  if(stt == null){
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Lỗi xin vui lòng đăng nhập lại ở trong game...",
+      confirmButtonText: "OK",
+      preConfirm: () => {
+        window.close()
+      }
+    });
+    setTimeout(() => {
+      window.close();
+    }, 5000);
+  }
   const fragment = new URLSearchParams(window.location.hash.slice(1));
   const [gg, name, accessToken, tokenType] = [
     fragment.get("idgg"),
