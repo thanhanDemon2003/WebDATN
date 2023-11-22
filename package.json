@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "web": "nodemon ./bin/www"
+    "web": "nodemon ./bin/www",
+    "restart": "npm run stop && npm run start",
+  "stop": "echo Stopping server..."
   },
   "dependencies": {
     "@momo-miniapp/api": "^0.0.1-security",
