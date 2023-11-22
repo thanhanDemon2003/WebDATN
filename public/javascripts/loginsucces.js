@@ -115,9 +115,9 @@ async function loginApiDiscord(stt, id, global_name) {
       throw new Error("Lỗi kết nối API");
     }
     const data = await response.json();
-    if (data.success === true) {
+    if (response.status === 200) {
       console.log(data);
-    } else if (data.error === true) {
+    } else if (response.status === 400) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
