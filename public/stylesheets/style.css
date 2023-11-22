@@ -10640,7 +10640,7 @@ body {
   font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
-  background: #f8f9fd;
+  background: #000;
   color: gray;
 }
 
@@ -10704,7 +10704,7 @@ h5,
 
 .login-wrap {
   position: relative;
-  background: #fff;
+  background: #c3c3c3;
   border-radius: 10px;
   -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
@@ -10950,4 +10950,12 @@ h5,
   .btn-google {
     margin-left: 0;
   }
+}
+.er{
+    padding: 10px;
+    color: #333;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 400;  
+    font-size: 12px;
 }
