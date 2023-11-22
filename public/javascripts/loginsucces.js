@@ -1,15 +1,15 @@
 window.onload = () => {
   const stt = localStorage.getItem("stt");
   console.log("stt", stt);
-  if(stt == null){
+  if (stt == null) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "Lỗi xin vui lòng đăng nhập lại ở trong game...",
       confirmButtonText: "OK",
       preConfirm: () => {
-        window.close()
-      }
+        window.close();
+      },
     });
     setTimeout(() => {
       window.close();
@@ -63,7 +63,7 @@ async function LoginwithGoogle(stt, gg, name) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     });
     if (!response.ok) {
       throw new Error("Lỗi kết nối API");
@@ -105,11 +105,11 @@ async function loginApiDiscord(stt, id, global_name) {
       id +
       "&method=discord&name=" +
       global_name;
-    const response = await fetch(url,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        }
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     if (!response.ok) {
       throw new Error("Lỗi kết nối API");
@@ -131,11 +131,7 @@ async function loginApiDiscord(stt, id, global_name) {
         window.location.href = "/logingame";
       }, 5000);
     } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Lỗi kết nối API",
-      });
+      console.log(data);
     }
   } catch (error) {
     console.log(error);
