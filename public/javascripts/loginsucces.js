@@ -66,7 +66,7 @@ async function LoginwithGoogle(stt, gg, name) {
       },
     });
     if (!response.ok) {
-      throw new Error("Lỗi kết nối API");
+      console.error("lỗi");
     }
     const data = await response.json();
     if (data.success === true) {
@@ -108,7 +108,8 @@ async function loginApiDiscord(stt, id, global_name) {
       },
     });
     if (!response.ok) {
-      throw new Error("Lỗi kết nối API");
+      console.error("lỗi");
+
     }
     const data = await response.json();
     if (response.status === 200) {

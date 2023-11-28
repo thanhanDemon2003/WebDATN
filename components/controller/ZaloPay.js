@@ -20,7 +20,7 @@ const ZaloPayCreate = async (req, res) => {
     const embed_data = {
       promotioninfo: "id",
       merchantinfo: "123456",
-      redirecturl: "https://dotstudio.demondev.games/payment/thankyou",
+      redirecturl: "https://dotstudio.andemongame.tech/payment/thankyou",
     };
     const items = [{}];
     const transID = Math.floor(Math.random() * 1000000);
@@ -32,7 +32,7 @@ const ZaloPayCreate = async (req, res) => {
       item: JSON.stringify(items),
       embed_data: JSON.stringify(embed_data),
       amount: amount,
-      callback_url: "https://dotstudio.demondev.games/api/respaymentzalo",
+      callback_url: "https://dotstudio.andemongame.tech/api/respaymentzalo",
       description: `DotStudio - Nạp tiền game Dark Disquite #${transID}`,
       bank_code: "",
     };
@@ -90,7 +90,7 @@ const VisaCreate = async (req, res) => {
     const embed_data = {
       promotioninfo: "id",
       merchantinfo: "123456",
-      redirecturl: "https://dotstudio.demondev.games/payment/thankyou",
+      redirecturl: "https://dotstudio.andemongame.tech/payment/thankyou",
     };
     const items = [{}];
     const transID = Math.floor(Math.random() * 1000000);
@@ -102,7 +102,7 @@ const VisaCreate = async (req, res) => {
       item: JSON.stringify(items),
       embed_data: JSON.stringify(embed_data),
       amount: amount,
-      callback_url: "https://dotstudio.demondev.games/api/respaymentzalo",
+      callback_url: "https://dotstudio.andemongame.tech/api/respaymentzalo",
       description: `DotStudio - Nạp tiền game Dark Disquite #${transID}`,
       bank_code: "CC",
     };
