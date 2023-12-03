@@ -3929,7 +3929,7 @@ ul {
   background-position: top;
   background-size: contain;
   background-repeat: no-repeat;
-  height: 650px;
+  height: 700px;
 }
 
 @media (max-width: 991px) {
@@ -3950,7 +3950,7 @@ ul {
 /* line 26, ../../01 cl html template/03_jun 2019/186_Gaiming_html/sass/_pricing_plan.scss */
 .pricing_part .single_pricing_part img {
   margin-bottom: 18px;
-  height: 200px;
+  height: 250px;
   width: 200px;
 }
 
