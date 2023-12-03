@@ -42,6 +42,7 @@ const countDotCoin = async (amount) => {
     dotCoint += 100;
   }
   console.log(dotCoint);
+  dotCoint = Math.round(dotCoint);
   return dotCoint;
 }
 const paymentCreate = async (body, methodPayment) => {
