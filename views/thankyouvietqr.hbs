@@ -120,6 +120,9 @@
       const url = localStorage.getItem("currentPaymentUrl");
 const btn = document.getElementById("btn-local");
 btn.addEventListener("click", () => {
+  if(url === null) {
+    window.location.href = "/";
+  }
   window.location.href = url;
 });
 fetch(
