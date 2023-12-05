@@ -38,17 +38,18 @@
       </div>
     </div>
     <script>
-      window.onload = async function () { 
-        if({{status}} == 1)
-      { document.getElementById("tt").innerHTML = "Thành Công" }else{
+      window.onload = async function () { if({{status}}
+      == 1) { document.getElementById("tt").innerHTML = "Thành Công" }else{
       document.getElementById("tt").innerHTML = "Thất Bại" } const url =
       localStorage.getItem("currentPaymentUrl"); const btn =
       document.getElementById("btn-local"); btn.addEventListener("click", () =>
-      { window.location.href = url; }); fetch( "/api/respaymentzalo?apptransid="
-      + "{{apptransid}}" + "&status=" + "{{status}}", { method: "POST", headers:
-      { "Content-Type": "application/json" } } ) .then((res) => { if (res.status
-      === 200) { Swal.fire({ icon: "success", title: "Thành Công", text:
-      "Dữ liệu đang được chuyển về bạn hãy đợi một chút", }); } else {
+      { if (url == null) { window.location.href = "/loginpayment";
+      localStorage.removeItem("currentPaymentUrl"); return; }
+      window.location.href = url; }); fetch( "/api/respaymentzalo?apptransid=" +
+      "{{apptransid}}" + "&status=" + "{{status}}", { method: "POST", headers: {
+      "Content-Type": "application/json" } } ) .then((res) => { if (res.status
+      === 200) { Swal.fire({ icon: "success", title: "Thành Công", text: "Dữ
+      liệu đang được chuyển về bạn hãy đợi một chút", }); } else {
       console.log("fail"); } }) .then((data) => { console.log(data); })
       .catch((err) => { console.log(err); }); }
     </script>
