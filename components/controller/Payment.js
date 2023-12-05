@@ -6,6 +6,7 @@ const resPaymentController = async (req, res) => {
   try {
     const { orderCode, id, status } = req.query;
     const resPayment = await PaymentService.resPayment(orderCode, id, status);
+    console.log(resPayment);
     if (status === "PAID") {
       const balance = resPayment.dotCoint;
       const idPlayer = resPayment.idPlayer;
